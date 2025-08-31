@@ -2,10 +2,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+    d.url = "github:nix-community/disko";
+    d.inputs.nixpkgs.follows = "nixpkgs";
     
-    impermanence.url = "github:nix-community/impermanence";
+    i.url = "github:nix-community/impermanence";
     
     hm.url = "github:nix-community/home-manager";
     hm.inputs.nixpkgs.follows = "nixpkgs";
