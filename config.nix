@@ -9,5 +9,7 @@ in {
     hm.nixosModules.home-manager
   ];
 
+  nixpkgs.hostPlatform = "x86_64-linux";
+
   system.stateVersion = stateVersion;
 }
