@@ -14,6 +14,7 @@ in {
   users.users.${username} = {
     isNormalUser = true;
     createHome = true;
+    hashedPassword = "";
     extraGroups = [ "wheel" ];
   };
 
