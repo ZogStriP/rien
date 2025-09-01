@@ -44,6 +44,8 @@ in {
 
   services.btrfs.autoScrub.enable = true;
 
+  fileSystems.${persist}.neededForBoot = true;
+
   environment.persistence.${persist} = {
     hideMounts = true;
 
@@ -56,8 +58,6 @@ in {
       "/var/lib/systemd"
     ];
   };
-
-  fileSystems.${persist}.neededForBoot = true;
 
   disko.devices = {
     disk.nvme = {
