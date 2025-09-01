@@ -10,6 +10,22 @@ in {
     hm.nixosModules.home-manager
   ];
 
+  networking.hostName = hostname;
+
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd.systemd.enable = true;
+    loader = {
+      timeout = 0;
+      systemd-boot = {
+        enable = true;
+        editor = false;
+        configurationLimit = 5;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+  };
+
   zramSwap.enable = true;
 
   services.btrfs.autoScrub.enable = true;
