@@ -11,6 +11,8 @@ in {
     hm.nixosModules.home-manager
   ];
 
+  users.mutableUsers = false;
+  users.users.root.hashedPassword = "!";
   users.users.${username} = {
     isNormalUser = true;
     createHome = true;
@@ -19,11 +21,6 @@ in {
   };
 
   services.getty.autologinUser = username;
-
-  users.mutableUsers = false;
-  users.users.root.hashedPassword = "!";
-  security.sudo.wheelNeedsPassword = false;
-  security.sudo.execWheelOnly = true;
 
   time.timeZone = "Europe/Paris";
 
