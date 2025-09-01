@@ -2,13 +2,29 @@
   username     = "zogstrip";
   name         = "Régis Hanol";
   email        = "regis@hanol.fr";
+  persist      = "/persist";
   stateVersion = "25.05";
 in {
-  imports = [ 
+  imports = [
     d.nixosModules.disko
     i.nixosModules.impermanence
     hm.nixosModules.home-manager
   ];
+
+  users.users.${username} = {
+    isNormalUser = true;
+    createHome = true;
+    extraGroups = [ "wheel" ];
+  };
+
+  services.getty.autologinUser = username;
+
+  users.mutableUsers = false;
+  users.users.root.hashedPassword = "!";
+  security.sudo.wheelNeedsPassword = false;
+  security.sudo.execWheelOnly = true;
+
+  time.timeZone = "Europe/Paris";
 
   networking.hostName = hostname;
 
@@ -30,7 +46,7 @@ in {
 
   services.btrfs.autoScrub.enable = true;
 
-  environment.persistence."/persist" = {
+  environment.persistence.${persist} = {
     hideMounts = true;
 
     files = [
@@ -43,7 +59,7 @@ in {
     ];
   };
 
-  fileSystems."/persist".neededForBoot = true;
+  fileSystems.${persist}.neededForBoot = true;
 
   disko.devices = {
     disk.nvme = {
@@ -77,7 +93,7 @@ in {
                     mountOptions = [ "noatime" ];
                   };
                   "@persist" = { 
-                    mountpoint = "/persist"; 
+                    mountpoint = persist; 
                     mountOptions = [ "noatime" ];
                   };
                   "@log" = { 
