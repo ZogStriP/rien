@@ -27,6 +27,8 @@ in {
     ];
   };
 
+  fileSystems."/persist".neededForBoot = true;
+
   disko.devices = {
     disk.nvme = {
       type = "disk";
