@@ -1,7 +1,7 @@
 { d, i, hm, pkgs, lib, hostname, ... } : let 
-  username = "zogstrip";
-  name = "Régis Hanol";
-  email = "regis@hanol.fr";
+  username     = "zogstrip";
+  name         = "Régis Hanol";
+  email        = "regis@hanol.fr";
   stateVersion = "25.05";
 in {
   imports = [ 
