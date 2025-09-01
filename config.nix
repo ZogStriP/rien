@@ -10,6 +10,23 @@ in {
     hm.nixosModules.home-manager
   ];
 
+  zramSwap.enable = true;
+
+  services.btrfs.autoScrub.enable = true;
+
+  environment.persistence."/persist" = {
+    hideMounts = true;
+
+    files = [
+      "/etc/machine-id"
+    ];
+
+    directories = [
+      "/var/lib/nixos"
+      "/var/lib/systemd"
+    ];
+  };
+
   disko.devices = {
     disk.nvme = {
       type = "disk";
@@ -66,21 +83,6 @@ in {
         mountOptions = [ "size=4G" "mode=1777" ]; 
       };
     };
-  };
-
-  zramSwap.enable = true;
-
-  environment.persistence."/persist" = {
-    hideMounts = true;
-
-    files = [
-      "/etc/machine-id"
-    ];
-
-    directories = [
-      "/var/lib/nixos"
-      "/var/lib/systemd"
-    ];
   };
 
   nixpkgs.hostPlatform = "x86_64-linux";
