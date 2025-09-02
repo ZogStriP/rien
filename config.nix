@@ -64,7 +64,7 @@ in {
     };
   };
 
-  # enable zram swap
+  # enable in-memory compressed swap
   zramSwap.enable = true;
 
   # enable automatic BTRFS scrubbing
