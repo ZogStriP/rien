@@ -95,10 +95,10 @@ in {
   '';
 
   # enable X window server
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # enable dwm window manager
-  services.xserver.windowManager.dwm.enable = true;
+  # services.xserver.windowManager.dwm.enable = true;
 
   # allow brightness control via `xbacklight` from users in the video group
   hardware.acpilight.enable = true;
