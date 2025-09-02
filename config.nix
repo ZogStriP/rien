@@ -52,6 +52,14 @@ in {
     # use latest kernel
     kernelPackages = pkgs.linuxPackages_latest;
 
+    # disable these kernel modules during boot (so they don't trigger errors)
+    blacklistedKernelModules = [ 
+      "cros-usbpd-charger"  # not used by frame.work EC and causes boot time error log
+      "hid-sensor-hub"      # prevent interferences with fn/media keys - https://community.frame.work/t/20675/391
+      "iTCO_wdt"            # disable "Intel TCO Watchdog Timer"
+      "mei_wdt"             # disable "Intel Management Engine Interface Watchdog Timer"
+    ];
+
     # use systemd as PID 1
     initrd.systemd.enable = true;
 
