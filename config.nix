@@ -54,8 +54,16 @@ in {
   # default timezone
   time.timeZone = "Europe/Paris";
 
-  # machine's hostname
-  networking.hostName = hostname;
+  networking = {
+    # machine's hostname
+    hostName = hostname;
+    # disable dhcpcd
+    dhcpcd.enable = false;
+    # enable networkd (DHCP)
+    useNetworkd = true;
+    # enable iwd (WiFi)
+    wireless.iwd.enable = true;
+  };
 
   boot = {
     # use latest kernel
