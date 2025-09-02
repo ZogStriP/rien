@@ -12,6 +12,28 @@ in {
     hm.nixosModules.home-manager
   ];
 
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.${username} = {
+    home.username = username;
+    home.homeDirectory = "/home/${username}";
+    home.stateVersion = stateVersion;
+
+    programs = {
+      home-manager.enable = true;
+
+      git.enable = true;
+      git.extraConfig = {
+        user = {
+          name = name;
+          email = email;
+        };
+      };
+
+      neovim.enable = true;
+    };
+  };
+
   # 1Password CLI & GUI
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "1password" "1password-cli" ];
   # programs._1password.enable = true;
