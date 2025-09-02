@@ -151,7 +151,9 @@ in {
   # ensures members of the wheel group can talk to nix's daemon
   nix.settings.trusted-users = [ "@wheel" ];
 
+  # this is an intel x86_64 machine
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  # used for backward compatibility
   system.stateVersion = stateVersion;
 }
