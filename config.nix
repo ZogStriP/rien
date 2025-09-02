@@ -14,7 +14,7 @@ in {
   # ensure users can't be changed
   users.mutableUsers = false;
 
-  # disable root login by setting an impossible password hash
+  # disable root by setting an impossible password hash
   users.users.root.hashedPassword = "!";
 
   # zogstrip's user account
