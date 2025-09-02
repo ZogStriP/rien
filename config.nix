@@ -17,7 +17,7 @@ in {
   programs._1password-gui.enable = true;
   programs._1password-gui.polkitPolicyOwners = [ username ];
 
-  # `nh os switch`
+  # `nh os switch` - https://github.com/nix-community/nh
   programs.nh.enable = true;
   # programs.nh.flake = "${persist}/z/poetry/config";
 
