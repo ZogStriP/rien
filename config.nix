@@ -1,4 +1,4 @@
-{ d, i, hm, pkgs, hostname, ... } : let 
+{ d, i, hm, pkgs, lib, hostname, ... } : let 
   username     = "zogstrip";
   name         = "Régis Hanol";
   email        = "regis@hanol.fr";
@@ -10,6 +10,16 @@ in {
     i.nixosModules.impermanence
     hm.nixosModules.home-manager
   ];
+
+  # 1Password CLI & GUI
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "1password" "1password-cli" ];
+  programs._1password.enable = true;
+  programs._1password-gui.enable = true;
+  programs._1password-gui.polkitPolicyOwners = [ username ];
+
+  # `nh os switch`
+  programs.nh.enable = true;
+  # programs.nh.flake = "${persist}/z/poetry/config";
 
   # enable basic set of fonts
   fonts.enableDefaultPackages = true;
@@ -158,17 +168,24 @@ in {
   environment.persistence.${persist} = {
     hideMounts = true;
 
+    # required system files
     files = [
       "/etc/machine-id"
     ];
 
+    # required system directories
     directories = [
       "/var/lib/bluetooth"
-      "/var/lib/fprint/${username}"
+      "/var/lib/fprint"
       "/var/lib/iwd"
       "/var/lib/nixos"
       "/var/lib/systemd"
       "/var/lib/tailscale"
+    ];
+
+    # required user directories
+    users.${username}.directories = [
+      ".config/1Password"
     ];
   };
 
