@@ -11,6 +11,9 @@ in {
     hm.nixosModules.home-manager
   ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "@wheel" ];
+
   users.mutableUsers = false;
   users.users.root.hashedPassword = "!";
   users.users.${username} = {
