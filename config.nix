@@ -27,7 +27,10 @@ in {
     # no password
     hashedPassword = "";
     # zogstrip's groups
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "video" # backlight
+      "wheel" # sudo
+    ];
   };
 
   # autologin as zogstrip
