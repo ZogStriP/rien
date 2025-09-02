@@ -110,7 +110,9 @@ in {
             content = {
               type = "luks";
               name = "luks";
+              # allows TRIM through LUKS
               settings.allowDiscards = true;
+              # disable workqueue for increased SSD performance
               settings.bypassWorkqueues = true;
               content = {
                 type = "btrfs";
