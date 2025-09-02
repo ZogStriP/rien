@@ -19,14 +19,14 @@ in {
   programs._1password-gui.polkitPolicyOwners = [ username ];
 
   # `nh os switch` - https://github.com/nix-community/nh
-  programs.nh.enable = true;
+  # programs.nh.enable = true;
   # programs.nh.flake = "${persist}/poetry/rien";
 
   # enable basic set of fonts
-  fonts.enableDefaultPackages = true;
+  # fonts.enableDefaultPackages = true;
 
   # install fira-code's nerd font
-  fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
+  # fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
 
   # ensure users can't be changed
   users.mutableUsers = false;
