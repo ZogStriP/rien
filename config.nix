@@ -19,6 +19,8 @@ in {
     extraGroups = [ "wheel" ];
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   services.getty.autologinUser = username;
 
   time.timeZone = "Europe/Paris";
