@@ -33,6 +33,15 @@ in {
   # dont' ask for password when `sudo`-ing
   security.sudo.wheelNeedsPassword = false;
 
+  # enable fwupd to update SSD/UEFI firmwares - https://fwupd.org
+  services.fwupd.enable = true; 
+
+  # various "open source" drivers / firmwares
+  hardware.enableRedistributableFirmware = true;
+
+  # update CPU's microcode
+  hardware.cpu.intel.updateMicrocode = true;
+
   # default timezone
   time.timeZone = "Europe/Paris";
 
