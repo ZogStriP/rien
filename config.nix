@@ -21,7 +21,10 @@ in {
     # no password
     hashedPassword = "";
     # zogstrip's groups
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "video" # brightness
+      "wheel"
+    ];
   };
 
   # autologin as zogstrip
@@ -35,6 +38,9 @@ in {
 
   # enable fwupd to update SSD/UEFI firmwares - https://fwupd.org
   services.fwupd.enable = true; 
+
+  # allow brightness control via `xbacklight` from users in the video group
+  hardware.acpilight.enable = true;
 
   # various "open source" drivers / firmwares
   hardware.enableRedistributableFirmware = true;
