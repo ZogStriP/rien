@@ -21,10 +21,7 @@ in {
     # no password
     hashedPassword = "";
     # zogstrip's groups
-    extraGroups = [
-      "video" # brightness
-      "wheel"
-    ];
+    extraGroups = [ "wheel" ];
   };
 
   # autologin as zogstrip
@@ -36,8 +33,46 @@ in {
   # dont' ask for password when `sudo`-ing
   security.sudo.wheelNeedsPassword = false;
 
+  # enable RealtimeKit (required for pipewire / pulse)
+  security.rtkit.enable = true;
+
+  # enable fingerprint reader
+  # enroll with `sudo fprintd-enroll zogstrip`
+  # verify with `fprintd-verify`
+  services.fprintd.enable = true;
+
   # enable fwupd to update SSD/UEFI firmwares - https://fwupd.org
-  services.fwupd.enable = true; 
+  services.fwupd.enable = true;
+
+  # disable power button
+  services.logind.powerKey = "ignore";
+
+  # enable pipewire for audio / video streams
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
+
+  # tailscale
+  services.tailscale.enable = true;
+
+  # enable TLP for better power management
+  services.tlp.enable = true;
+
+  # Use dbus-broker, a better/faster dbus daemon (default in Arch)
+  # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
+  services.dbus.implementation = "broker";
+
+  services.udev.extraHwdb = ''
+    # remap CAPS lock to ESC
+    evdev:atkbd:*
+      KEYBOARD_KEY_3a=esc
+
+    # disable RFKILL key (airplane mode)
+    evdev:input:b0018v32ACp0006*
+      KEYBOARD_KEY_100c6=reserved
+  '';
 
   # allow brightness control via `xbacklight` from users in the video group
   hardware.acpilight.enable = true;
