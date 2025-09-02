@@ -11,9 +11,6 @@ in {
     hm.nixosModules.home-manager
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.trusted-users = [ "@wheel" ];
-
   users.mutableUsers = false;
   users.users.root.hashedPassword = "!";
   users.users.${username} = {
@@ -120,6 +117,9 @@ in {
       };
     };
   };
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "@wheel" ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
