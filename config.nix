@@ -42,6 +42,9 @@ in {
   # allow brightness control via `xbacklight` from users in the video group
   hardware.acpilight.enable = true;
 
+  # bluetooth
+  hardware.bluetooth.enable = true;
+
   # various "open source" drivers / firmwares
   hardware.enableRedistributableFirmware = true;
 
