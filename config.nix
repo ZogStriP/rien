@@ -56,6 +56,10 @@ in {
   # enable RealtimeKit (required for pipewire / pulse)
   security.rtkit.enable = true;
 
+  # Use dbus-broker, a better/faster dbus daemon (default in Arch)
+  # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
+  services.dbus.implementation = "broker";
+
   # enable fingerprint reader
   # enroll with `sudo fprintd-enroll zogstrip`
   # verify with `fprintd-verify`
@@ -80,10 +84,6 @@ in {
   # enable TLP for better power management
   services.tlp.enable = true;
 
-  # Use dbus-broker, a better/faster dbus daemon (default in Arch)
-  # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
-  services.dbus.implementation = "broker";
-
   services.udev.extraHwdb = ''
     # remap CAPS lock to ESC
     evdev:atkbd:*
@@ -93,6 +93,12 @@ in {
     evdev:input:b0018v32ACp0006*
       KEYBOARD_KEY_100c6=reserved
   '';
+
+  # enable X window server
+  services.xserver.enable = true;
+
+  # enable dwm window manager
+  services.xserver.windowManager.dwm.enable = true;
 
   # allow brightness control via `xbacklight` from users in the video group
   hardware.acpilight.enable = true;
