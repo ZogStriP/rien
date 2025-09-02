@@ -40,7 +40,7 @@ in {
   networking.hostName = hostname;
 
   boot = {
-    # use latest kernerl
+    # use latest kernel
     kernelPackages = pkgs.linuxPackages_latest;
 
     # use systemd as PID 1
