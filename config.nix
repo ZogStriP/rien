@@ -11,6 +11,12 @@ in {
     hm.nixosModules.home-manager
   ];
 
+  # enable basic set of fonts
+  fonts.enableDefaultPackages = true;
+
+  # install fira-code's nerd font
+  fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
+
   # ensure users can't be changed
   users.mutableUsers = false;
 
