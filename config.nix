@@ -2,6 +2,7 @@
   username     = "zogstrip";
   name         = "Régis Hanol";
   email        = "regis@hanol.fr";
+  signingKey   = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO3naLkQYJ4SP6pk/ZoPWJcUW4hoOoBzy1JoO8I5lpze";
   persist      = "/persist";
   stateVersion = "25.05";
 in {
@@ -19,7 +20,7 @@ in {
 
   # `nh os switch` - https://github.com/nix-community/nh
   programs.nh.enable = true;
-  programs.nh.flake = "${persist}/poetry/rien";
+  # programs.nh.flake = "${persist}/poetry/rien";
 
   # enable basic set of fonts
   fonts.enableDefaultPackages = true;
