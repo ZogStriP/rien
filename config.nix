@@ -45,7 +45,7 @@ in {
   services.fwupd.enable = true;
 
   # disable power button
-  services.logind.powerKey = "ignore";
+  services.logind.settings.Login.HandlePowerKey = "ignore";
 
   # enable pipewire for audio / video streams
   services.pipewire = {
