@@ -151,8 +151,12 @@ in {
     ];
 
     directories = [
+      "/var/lib/bluetooth"
+      "/var/lib/fprint/${username}"
+      "/var/lib/iwd"
       "/var/lib/nixos"
       "/var/lib/systemd"
+      "/var/lib/tailscale"
     ];
   };
 
