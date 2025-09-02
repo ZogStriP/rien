@@ -89,11 +89,14 @@ in {
   # bluetooth
   hardware.bluetooth.enable = true;
 
+  # update CPU's microcode
+  hardware.cpu.intel.updateMicrocode = true;
+
   # various "open source" drivers / firmwares
   hardware.enableRedistributableFirmware = true;
 
-  # update CPU's microcode
-  hardware.cpu.intel.updateMicrocode = true;
+  # enable hardware accelerated graphics drivers
+  hardware.graphics.enable = true;
 
   # default timezone
   time.timeZone = "Europe/Paris";
