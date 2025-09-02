@@ -14,9 +14,6 @@ in {
   # ensure users can't be changed
   users.mutableUsers = false;
 
-  # disable root by setting an impossible password hash
-  users.users.root.hashedPassword = "!";
-
   # zogstrip's user account
   users.users.${username} = {
     # just a regular user
@@ -27,11 +24,14 @@ in {
     extraGroups = [ "wheel" ];
   };
 
-  # dont' ask for password when `sudo`-ing
-  security.sudo.wheelNeedsPassword = false;
-
   # autologin as zogstrip
   services.getty.autologinUser = username;
+
+  # disable root by setting an impossible password hash
+  users.users.root.hashedPassword = "!";
+
+  # dont' ask for password when `sudo`-ing
+  security.sudo.wheelNeedsPassword = false;
 
   # default timezone
   time.timeZone = "Europe/Paris";
