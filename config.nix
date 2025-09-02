@@ -11,42 +11,69 @@ in {
     hm.nixosModules.home-manager
   ];
 
+  # ensure users can't be changed
   users.mutableUsers = false;
+
+  # disable root login by setting an impossible password hash
   users.users.root.hashedPassword = "!";
+
+  # zogstrip's user account
   users.users.${username} = {
+    # just a regular user
     isNormalUser = true;
+    # no password
     hashedPassword = "";
+    # zogstrip's groups
     extraGroups = [ "wheel" ];
   };
 
+  # dont' ask for password when `sudo`-ing
   security.sudo.wheelNeedsPassword = false;
 
+  # autologin as zogstrip
   services.getty.autologinUser = username;
 
+  # default timezone
   time.timeZone = "Europe/Paris";
 
+  # machine's hostname
   networking.hostName = hostname;
 
   boot = {
+    # use latest kernerl
     kernelPackages = pkgs.linuxPackages_latest;
+
+    # use systemd as PID 1
     initrd.systemd.enable = true;
+
     loader = {
+      # don't display the boot loaded screen (press <space> to show if if needed)
       timeout = 0;
+
       systemd-boot = {
+        # enable systemd-boot boot loader
         enable = true;
+        # disable editing the boot menu
         editor = false;
+        # keep a maximum of 5 generations
         configurationLimit = 5;
       };
+
+      # allow NixOS to modify EFI variables
       efi.canTouchEfiVariables = true;
     };
   };
 
+  # enable zram swap
   zramSwap.enable = true;
 
+  # enable automatic BTRFS scrubbing
   services.btrfs.autoScrub.enable = true;
 
+  # ensure /persist is mounted at boot
   fileSystems.${persist}.neededForBoot = true;
 
+  # everything that needs to be persisted
   environment.persistence.${persist} = {
     hideMounts = true;
 
@@ -60,6 +87,7 @@ in {
     ];
   };
 
+  # disk layout / partitions
   disko.devices = {
     disk.nvme = {
       type = "disk";
@@ -118,7 +146,9 @@ in {
     };
   };
 
+  # enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # ensures members of the wheel group can talk to nix's daemon
   nix.settings.trusted-users = [ "@wheel" ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
