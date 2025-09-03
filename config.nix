@@ -4,7 +4,7 @@
   email        = "regis@hanol.fr";
   signingKey   = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO3naLkQYJ4SP6pk/ZoPWJcUW4hoOoBzy1JoO8I5lpze";
   persist      = "/persist";
-  stateVersion = "25.05";
+  stateVersion = "25.11";
 in {
   imports = [
     d.nixosModules.disko
