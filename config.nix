@@ -36,19 +36,19 @@ in {
 
   # 1Password CLI & GUI
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "1password" "1password-cli" ];
-  # programs._1password.enable = true;
+  programs._1password.enable = true;
   programs._1password-gui.enable = true;
   programs._1password-gui.polkitPolicyOwners = [ username ];
 
   # `nh os switch` - https://github.com/nix-community/nh
-  # programs.nh.enable = true;
-  # programs.nh.flake = "${persist}/poetry/rien";
+  programs.nh.enable = true;
+  programs.nh.flake = "${persist}/poetry/rien";
 
   # enable basic set of fonts
-  # fonts.enableDefaultPackages = true;
+  fonts.enableDefaultPackages = true;
 
   # install fira-code's nerd font
-  # fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
+  fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
 
   # ensure users can't be changed
   users.mutableUsers = false;
@@ -117,10 +117,10 @@ in {
   '';
 
   # enable X window server
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
   # enable dwm window manager
-  # services.xserver.windowManager.dwm.enable = true;
+  services.xserver.windowManager.dwm.enable = true;
 
   # allow brightness control via `xbacklight` from users in the video group
   hardware.acpilight.enable = true;
