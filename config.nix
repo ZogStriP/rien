@@ -1,4 +1,4 @@
-{ d, i, hm, pkgs, lib, hostname, ... } : let 
+{ d, i, hm, pkgs, lib, hostname, ... } : let
   username     = "zogstrip";
   name         = "Régis Hanol";
   email        = "regis@hanol.fr";
@@ -66,7 +66,7 @@ in {
     ];
   };
 
-  # autologin as zogstrip
+  # use `agetty` to autologin
   services.getty.autologinUser = username;
 
   # disable root by setting an impossible password hash
@@ -116,11 +116,14 @@ in {
       KEYBOARD_KEY_100c6=reserved
   '';
 
-  # enable X window server
-  services.xserver.enable = true;
-
-  # enable dwm window manager
-  services.xserver.windowManager.dwm.enable = true;
+  services.xserver = {
+    # enable X window server
+    enable = true;
+    # use dwm window manager
+    dwm.enable = true;
+    # use startx to start X (no display manager)
+    displayManager.startx.enable = true;
+  };
 
   # allow brightness control via `xbacklight` from users in the video group
   hardware.acpilight.enable = true;
@@ -156,7 +159,7 @@ in {
     kernelPackages = pkgs.linuxPackages_latest;
 
     # disable these kernel modules during boot (so they don't trigger errors)
-    blacklistedKernelModules = [ 
+    blacklistedKernelModules = [
       "cros-usbpd-charger"  # not used by frame.work EC and causes boot time error log
       "hid-sensor-hub"      # prevent interferences with fn/media keys - https://community.frame.work/t/20675/391
       "iTCO_wdt"            # disable "Intel TCO Watchdog Timer"
@@ -251,16 +254,16 @@ in {
               content = {
                 type = "btrfs";
                 subvolumes = {
-                  "@nix" = { 
-                    mountpoint = "/nix"; 
+                  "@nix" = {
+                    mountpoint = "/nix";
                     mountOptions = [ "noatime" ];
                   };
-                  "@persist" = { 
-                    mountpoint = persist; 
+                  "@persist" = {
+                    mountpoint = persist;
                     mountOptions = [ "noatime" ];
                   };
-                  "@log" = { 
-                    mountpoint = "/var/log"; 
+                  "@log" = {
+                    mountpoint = "/var/log";
                     mountOptions = [ "noatime" ];
                   };
                 };
@@ -271,13 +274,13 @@ in {
       };
     };
     nodev = {
-      "/" = { 
-        fsType = "tmpfs"; 
-        mountOptions = [ "size=128M" "mode=0755" ]; 
+      "/" = {
+        fsType = "tmpfs";
+        mountOptions = [ "size=128M" "mode=0755" ];
       };
-      "/tmp" = { 
-        fsType = "tmpfs"; 
-        mountOptions = [ "size=4G" "mode=1777" ]; 
+      "/tmp" = {
+        fsType = "tmpfs";
+        mountOptions = [ "size=4G" "mode=1777" ];
       };
     };
   };
