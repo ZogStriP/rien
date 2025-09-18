@@ -119,9 +119,9 @@ in {
   services.xserver = {
     # enable X window server
     enable = true;
-    # use dwm window manager
-    dwm.enable = true;
-    # use startx to start X (no display manager)
+    # use dwm window manager - https://dwm.suckless.org
+    windowManager.dwm.enable = true;
+    # use startx to ... start X (no display manager)
     displayManager.startx.enable = true;
   };
 
