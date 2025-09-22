@@ -49,8 +49,10 @@ in {
       ripgrep.enable = true;
 
       ssh.enable = true;
-      ssh.compression = true;
-      ssh.matchBlocks."*".extraOptions.IdentityAgent = "~/.1password/agent.sock";
+      ssh.matchBlocks."*" = {
+        compression = true;
+        identityAgent = "~/.1password/agent.sock";
+      };
     };
   };
 
