@@ -123,6 +123,8 @@ in {
     windowManager.dwm.enable = true;
     # use startx to ... start X (no display manager)
     displayManager.startx.enable = true;
+    # generate `/etc/X11/xinit/xinitrc` script
+    displayManager.startx.generateScript = true;
   };
 
   # allow brightness control via `xbacklight` from users in the video group
