@@ -33,6 +33,12 @@ in {
       '';
 
       btop.enable = true;
+      btop.settings = {
+        disks_filter = "/ /boot /nix /tmp/ /swap";
+        proc_tree = true;
+        rounded_corners = false;
+        vim_keys = true;
+      };
 
       fd.enable = true;
 
