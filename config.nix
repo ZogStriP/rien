@@ -33,6 +33,12 @@ in {
       wget
     ];
 
+    gtk.enable = true;
+    gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+
+    qt.enable = true;
+    qt.style.name = "adwaita-dark";
+
     programs = {
       home-manager.enable = true;
 
@@ -54,8 +60,6 @@ in {
       };
 
       chromium.enable = true;
-
-      eza.enable = true;
 
       fastfetch.enable = true;
 
@@ -82,9 +86,6 @@ in {
         };
       };
 
-      gtk.enable = true;
-      gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-
       jq.enable = true;
 
       neovim = {
@@ -93,9 +94,6 @@ in {
         viAlias = true;
         vimAlias = true;
       };
-
-      qt.enable = true;
-      qt.style.name = "adwaita-dark";
 
       ripgrep.enable = true;
 
