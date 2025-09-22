@@ -27,6 +27,11 @@ in {
     programs = {
       home-manager.enable = true;
 
+      bash.enable = true;
+      bash.profileExtra = ''
+        [[ -z "$DISPLAY" && $(tty) = "/dev/tty1" ]] && exec startx
+      '';
+
       btop.enable = true;
 
       fd.enable = true;
@@ -42,6 +47,10 @@ in {
       neovim.enable = true;
 
       ripgrep.enable = true;
+
+      ssh.enable = true;
+      ssh.compression = true;
+      ssh.matchBlocks."*".extraOptions.IdentityAgent = "~/.1password/agent.sock";
     };
   };
 
