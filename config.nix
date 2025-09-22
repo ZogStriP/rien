@@ -20,9 +20,17 @@ in {
     home.homeDirectory = "/home/${username}";
     home.stateVersion = stateVersion;
 
+    home.sessionVariables = {
+      HOMEBREW_NO_ENV_HINTS = 1;
+      NIX_CONFIG = "access-tokens = github.com=$(gh auth token)";
+      RUBY_YJIT_ENABLE = 1;
+    };
+
     home.packages = with pkgs; [
-      st
+      curl
       dmenu
+      st
+      wget
     ];
 
     programs = {
@@ -44,6 +52,8 @@ in {
           vim_keys = true;
         };
       };
+
+      chromium.enable = true;
 
       eza.enable = true;
 
@@ -72,6 +82,9 @@ in {
         };
       };
 
+      gtk.enable = true;
+      gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+
       jq.enable = true;
 
       neovim = {
@@ -80,6 +93,9 @@ in {
         viAlias = true;
         vimAlias = true;
       };
+
+      qt.enable = true;
+      qt.style.name = "adwaita-dark";
 
       ripgrep.enable = true;
 
