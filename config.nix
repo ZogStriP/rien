@@ -19,8 +19,17 @@ in {
     home.homeDirectory = "/home/${username}";
     home.stateVersion = stateVersion;
 
+    home.packages = with pkgs; [
+      st
+      dmenu
+    ];
+
     programs = {
       home-manager.enable = true;
+
+      btop.enable = true;
+
+      fd.enable = true;
 
       git.enable = true;
       git.extraConfig = {
@@ -31,6 +40,8 @@ in {
       };
 
       neovim.enable = true;
+
+      ripgrep.enable = true;
     };
   };
 
