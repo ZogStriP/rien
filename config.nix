@@ -30,28 +30,56 @@ in {
 
       bash.enable = true;
       bash.profileExtra = ''
-        [[ -z "$DISPLAY" && $(tty) = "/dev/tty1" ]] && exec startx
+        [[ -z "$DISPLAY" && $(tty) = "/dev/tty1" ]] && exec startx > ~/.startx.log 2>&1
       '';
 
-      btop.enable = true;
-      btop.settings = {
-        disks_filter = "/ /boot /nix /tmp/ /swap";
-        proc_tree = true;
-        rounded_corners = false;
-        vim_keys = true;
-      };
+      bat.enable = true;
 
-      fd.enable = true;
-
-      git.enable = true;
-      git.extraConfig = {
-        user = {
-          name = name;
-          email = email;
+      btop = {
+        enable = true;
+        settings = {
+          disks_filter = "/ /boot /nix /tmp/ /swap";
+          proc_tree = true;
+          rounded_corners = false;
+          vim_keys = true;
         };
       };
 
-      neovim.enable = true;
+      eza.enable = true;
+
+      fastfetch.enable = true;
+
+      fd.enable = true;
+
+      firefox.enable = true;
+
+      gh.enable = true;
+      gh.settings.git_protocol = "ssh";
+
+      git = {
+        enable = true;
+        signing = {
+          format = "ssh";
+          signer = lib.getExe' pkgs._1password-gui "op-ssh-sign";
+          signByDefault = true;
+        };
+        extraConfig = {
+          user = {
+            name = name;
+            email = email;
+            signingKey = signingKey;
+          };
+        };
+      };
+
+      jq.enable = true;
+
+      neovim = {
+        enable = true;
+        defaultEditor = true;
+        viAlias = true;
+        vimAlias = true;
+      };
 
       ripgrep.enable = true;
 
@@ -60,6 +88,8 @@ in {
         compression = true;
         identityAgent = "~/.1password/agent.sock";
       };
+
+      uv.enable = true;
     };
   };
 
