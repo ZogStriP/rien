@@ -240,9 +240,9 @@ in {
 
     # required user directories
     users.${username}.directories = [
-      ".config/1Password"
-      ".config/op"
-      ".ssh"
+      { directory = ".config/1Password"; mode = "0700"; }
+      { directory = ".config/op"; mode = "0700"; }
+      { directory = ".ssh"; mode = "0700"; }
       "poetry"
     ];
   };
