@@ -64,7 +64,6 @@ in {
 
   # `nh os switch` - https://github.com/nix-community/nh
   programs.nh.enable = true;
-  programs.nh.flake = "${persist}/poetry/rien";
 
   # enable basic set of fonts
   fonts.enableDefaultPackages = true;
