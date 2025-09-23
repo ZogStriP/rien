@@ -33,12 +33,6 @@ in {
       wget
     ];
 
-    gtk.enable = true;
-    gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-
-    qt.enable = true;
-    qt.style.name = "adwaita-dark";
-
     programs = {
       home-manager.enable = true;
 
