@@ -5,7 +5,6 @@
   signingKey   = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO3naLkQYJ4SP6pk/ZoPWJcUW4hoOoBzy1JoO8I5lpze";
   persist      = "/persist";
   stateVersion = "25.11";
-  privateDirs  = map (directory: { inherit directory; mode = "0700"; });
 in {
   imports = [
     d.nixosModules.disko
@@ -299,10 +298,10 @@ in {
     ];
 
     # required user directories
-    users.${username}.directories = privateDirs [
+    users.${username}.directories = [
       ".config/1Password"
-      ".config/op"
-      ".ssh"
+      { directory = ".config/op"; mode = "0700"; }
+      { directory = ".ssh"; mode = "0700"; }
       "poetry"
     ];
   };
