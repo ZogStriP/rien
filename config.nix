@@ -182,15 +182,18 @@ in {
       KEYBOARD_KEY_100c6=reserved
   '';
 
+  # enable natural scrolling on the touchpad
+  services.libinput.touchpad.naturalScrolling = true;
+
   services.xserver = {
     # enable X window server
     enable = true;
-    # use dwm window manager - https://dwm.suckless.org
-    windowManager.dwm.enable = true;
     # use startx to ... start X (no display manager)
     displayManager.startx.enable = true;
     # generate `/etc/X11/xinit/xinitrc` script
     displayManager.startx.generateScript = true;
+    # use dwm window manager - https://dwm.suckless.org
+    windowManager.dwm.enable = true;
   };
 
   # allow brightness control via `xbacklight` from users in the video group
