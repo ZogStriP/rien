@@ -77,12 +77,10 @@ in {
           signer = lib.getExe' pkgs._1password-gui "op-ssh-sign";
           signByDefault = true;
         };
-        extraConfig = {
-          user = {
-            name = name;
-            email = email;
-            signingKey = signingKey;
-          };
+        extraConfig.user = {
+          name = name;
+          email = email;
+          signingKey = signingKey;
         };
       };
 
