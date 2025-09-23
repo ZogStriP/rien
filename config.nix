@@ -105,20 +105,6 @@ in {
 
       uv.enable = true;
     };
-
-    systemd.user.services."1password-gui" = {
-      Unit = {
-        Description = "1Password GUI";
-        PartOf = [ "graphical-session.target" ];
-      };
-      Service = {
-        ExecStart = "${pkgs._1password-gui}/bin/1password --silent";
-        Restart = "on-failure";
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
   };
 
   # 1Password CLI & GUI
