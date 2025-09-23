@@ -105,6 +105,20 @@ in {
 
       uv.enable = true;
     };
+
+    systemd.user.services."1password-gui" = {
+      Unit = {
+        Description = "1Password GUI";
+        PartOf = [ "graphical-session.target" ];
+      };
+      Service = {
+        ExecStart = "${pkgs._1password-gui}/bin/1password --silent";
+        Restart = "on-failure";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
   };
 
   # 1Password CLI & GUI
@@ -193,19 +207,10 @@ in {
     enable = true;
     # use dwm window manager - https://dwm.suckless.org
     windowManager.dwm.enable = true;
-
-    displayManager.startx = {
-      # use startx to ... start X (no display manager)
-      enable = true;
-      # generate `/etc/X11/xinit/xinitrc` script
-      generateScript = true;
-      # automatically start 1password in the background
-      extraCommands = ''
-        if ! pgrep -x 1password >/dev/null; then
-          ${pkgs._1password-gui}/bin/1password --silent > ~/.1password.log 2>&1 &
-        fi
-      '';
-     };
+    # use startx to ... start X (no display manager)
+    displayManager.startx.enable = true;
+    # generate `/etc/X11/xinit/xinitrc` script
+    displayManager.startx.generateScript = true;
   };
 
   # allow brightness control via `xbacklight` from users in the video group
