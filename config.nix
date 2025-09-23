@@ -302,6 +302,7 @@ in {
       files = [
         ".bash_history"
       ];
+    };
   };
 
   # disk layout / partitions
