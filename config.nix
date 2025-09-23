@@ -21,8 +21,6 @@ in {
     home.stateVersion = stateVersion;
 
     home.sessionVariables = {
-      HOMEBREW_NO_ENV_HINTS = 1;
-      NIX_CONFIG = "access-tokens = github.com=$(gh auth token)";
       RUBY_YJIT_ENABLE = 1;
     };
 
@@ -52,6 +50,8 @@ in {
           vim_keys = true;
         };
       };
+
+      bun.enable = true;
 
       chromium.enable = true;
 
@@ -105,7 +105,7 @@ in {
   programs._1password-gui.enable = true;
   programs._1password-gui.polkitPolicyOwners = [ username ];
 
-  # `nh os switch` - https://github.com/nix-community/nh
+  # `nh os switch .` - https://github.com/nix-community/nh
   programs.nh.enable = true;
 
   # enable basic set of fonts
