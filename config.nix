@@ -24,6 +24,9 @@ in {
       RUBY_YJIT_ENABLE = 1;
     };
 
+    gtk.enable = true;
+    gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+
     home.packages = with pkgs; [
       curl
       dmenu
