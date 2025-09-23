@@ -301,7 +301,7 @@ in {
     users.${username}.directories = [
       ".config/1Password"
       { directory = ".config/op"; mode = "0700"; }
-      { directory = ".ssh"; mode = "0700"; }
+      ".ssh"
       "poetry"
     ];
   };
