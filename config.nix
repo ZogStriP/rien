@@ -269,11 +269,6 @@ in {
   environment.persistence.${persist} = {
     hideMounts = true;
 
-    # required system files
-    files = [
-      "/etc/machine-id"
-    ];
-
     # required system directories
     directories = [
       "/var/lib/bluetooth"
@@ -284,13 +279,29 @@ in {
       "/var/lib/tailscale"
     ];
 
-    # required user directories
-    users.${username}.directories = privateDirs [
-      ".config/1Password"
-      ".config/op"
-      ".ssh"
-      "poetry"
+    # required system files
+    files = [
+      "/etc/machine-id"
     ];
+
+    users.${username} = {
+      # required user directories
+      directories = privateDirs [
+        ".cache"
+        ".cargo"
+        ".config/1Password"
+        ".config/gh"
+        ".config/op"
+        ".bun"
+        ".mozilla"
+        ".ssh"
+        "poetry"
+      ];
+
+      # required user files
+      files = [
+        ".bash_history"
+      ];
   };
 
   # disk layout / partitions
