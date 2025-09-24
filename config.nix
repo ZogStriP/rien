@@ -24,6 +24,11 @@ in {
       RUBY_YJIT_ENABLE = 1;
     };
 
+    home.shellAliases = {
+      ".."  = "cd ..";
+      "..." = "cd ../..";
+    };
+
     gtk.enable = true;
     gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
 
@@ -63,6 +68,21 @@ in {
       fd.enable = true;
 
       firefox.enable = true;
+      firefox.policies = {
+        DisableAccounts = true;
+        ExtensionSettings = {
+          # 1Password:
+          "{d634138d-c276-4fc8-924b-40a0ea21d284}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/1password-x-password-manager/latest.xpi";
+            installation_mode = "force_installed";
+          };
+          # uBlock Origin:
+          "uBlock0@raymondhill.net" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            installation_mode = "force_installed";
+          };
+        };
+      };
 
       gh.enable = true;
 
