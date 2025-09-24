@@ -84,6 +84,11 @@ in {
         };
       };
 
+      fzf.enable = true;
+      fzf.defaultCommand = "fd --type f";
+      fzf.fileWidgetCommand = "fd --type f";
+      fzf.changeDirWidgetCommand = "fd --type d";
+
       gh.enable = true;
 
       git = {
@@ -107,6 +112,18 @@ in {
         defaultEditor = true;
         viAlias = true;
         vimAlias = true;
+        extraLuaConfig = ''
+          vim.cmd('colorscheme quiet')
+          vim.opt.number = true               -- Show current line number
+          vim.opt.relativenumber = true       -- Show relative numbers
+          vim.opt.expandtab = true            -- Convert spaces to tabs
+          vim.opt.shiftwidth = 2              -- 2 spaces for each "indent"
+          vim.opt.softtabstop = 2             -- 2 spaces for <tab> or <del>
+          vim.opt.ignorecase = true           -- Case insensitive search by default
+          vim.opt.smartcase = true            -- Case sensitive search only with uppercase
+          vim.opt.wrap = false                -- Disable wrapping by default
+          vim.opt.clipboard = "unnamedplus"   -- Merge both * and + registers
+        '';
       };
 
       ripgrep.enable = true;
