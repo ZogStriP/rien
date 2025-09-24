@@ -392,6 +392,8 @@ in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # ensures members of the wheel group can talk to nix's daemon
   nix.settings.trusted-users = [ "@wheel" ];
+  # don't care about "dirty repository" warnings
+  nix.settings.warn-dirty = false;
 
   # this is an intel x86_64 machine
   nixpkgs.hostPlatform = "x86_64-linux";
