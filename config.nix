@@ -27,29 +27,34 @@ in {
     home.shellAliases = {
       ".."  = "cd ..";
       "..." = "cd ../..";
+      ff    = "fastfetch";
     };
 
+    # forces dark theme on gtk3+ applications
     gtk.enable = true;
     gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
 
+    # programs that don't need configurations
     home.packages = with pkgs; [
-      curl
-      dmenu
-      slstatus
-      st
-      wget
+      curl   # making request
+      dmenu  # suckless' app launcher
+      st     # suckless' terminal
+      wget   # downloading stuff
     ];
 
     programs = {
       home-manager.enable = true;
 
+      # launch startx on tty1
       bash.enable = true;
       bash.profileExtra = ''
         [[ -z "$DISPLAY" && $(tty) = "/dev/tty1" ]] && exec startx > ~/.startx.log 2>&1
       '';
 
+      # better `cat`
       bat.enable = true;
 
+      # better `top`
       btop = {
         enable = true;
         settings = {
@@ -60,12 +65,14 @@ in {
         };
       };
 
+      # for javascript/node programs
       bun.enable = true;
 
       chromium.enable = true;
 
       fastfetch.enable = true;
 
+      # better `find`
       fd.enable = true;
 
       firefox.enable = true;
@@ -85,11 +92,13 @@ in {
         };
       };
 
+      # fuzzy finder
       fzf.enable = true;
       fzf.defaultCommand = "fd --type f";
       fzf.fileWidgetCommand = "fd --type f";
       fzf.changeDirWidgetCommand = "fd --type d";
 
+      # GitHub's CLI
       gh.enable = true;
 
       git = {
@@ -106,6 +115,7 @@ in {
         };
       };
 
+      # json cli
       jq.enable = true;
 
       neovim = {
@@ -127,6 +137,7 @@ in {
         '';
       };
 
+      # better `grep`
       ripgrep.enable = true;
 
       ssh.enable = true;
@@ -135,6 +146,7 @@ in {
         identityAgent = "~/.1password/agent.sock";
       };
 
+      # for python programs
       uv.enable = true;
     };
   };
@@ -333,6 +345,7 @@ in {
         ".config/gh"
         ".config/op"
         ".bun"
+        ".local/share"
         ".mozilla"
         ".ssh"
         "poetry"
