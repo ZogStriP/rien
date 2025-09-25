@@ -137,6 +137,8 @@ in {
         '';
       };
 
+      obsidian.enable = true;
+
       # better `grep`
       ripgrep.enable = true;
 
