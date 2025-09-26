@@ -36,10 +36,13 @@ in {
 
     # programs that don't need configurations
     home.packages = with pkgs; [
-      curl   # making request
-      dmenu  # suckless' app launcher
-      st     # suckless' terminal
-      wget   # downloading stuff
+      curl     # making request
+      dmenu    # suckless' app launcher
+      ffmpeg   # screen recording / video stuff
+      mpv      # video watching
+      slstatus # suckless' status bar
+      st       # suckless' terminal
+      wget     # downloading stuff
     ];
 
     programs = {
@@ -70,6 +73,7 @@ in {
 
       chromium.enable = true;
 
+      # system information
       fastfetch.enable = true;
 
       # better `find`
@@ -221,7 +225,7 @@ in {
   # tailscale
   services.tailscale.enable = true;
 
-  # enable TLP for better power management
+  # power management
   services.tlp.enable = true;
 
   services.udev.extraHwdb = ''
