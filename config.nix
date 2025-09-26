@@ -253,6 +253,10 @@ in {
     displayManager.startx.generateScript = true;
     # use dwm window manager - https://dwm.suckless.org
     windowManager.dwm.enable = true;
+    # right-alt is compose
+    xkb.options = "compose:rwin";
+    # international variant (for accents)
+    xkb.variant = "altgr-intl";
   };
 
   # allow brightness control via `xbacklight` from users in the video group
