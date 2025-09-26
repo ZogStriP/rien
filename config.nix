@@ -158,7 +158,6 @@ in {
   };
 
   # 1Password CLI & GUI
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "1password" "1password-cli" ];
   programs._1password.enable = true;
   programs._1password-gui.enable = true;
   programs._1password-gui.polkitPolicyOwners = [ username ];
@@ -434,6 +433,9 @@ in {
 
   # this is an intel x86_64 machine
   nixpkgs.hostPlatform = "x86_64-linux";
+
+  # allow all "unfree" packages
+  nixpkgs.config.allowUnfree = true;
 
   # used for backward compatibility
   system.stateVersion = stateVersion;
