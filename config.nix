@@ -39,7 +39,6 @@ in {
       curl     # making request
       dmenu    # suckless' app launcher
       ffmpeg   # screen recording / video stuff
-      mpv      # video watching
       slstatus # suckless' status bar
       st       # suckless' terminal
       wget     # downloading stuff
@@ -48,8 +47,10 @@ in {
     programs = {
       home-manager.enable = true;
 
-      # launch startx on tty1
       bash.enable = true;
+      # ignore duplicates and commands starting with a space
+      bash.historyControl = [ "ignoreboth" ];
+      # launch startx on tty1
       bash.profileExtra = ''
         [[ -z "$DISPLAY" && $(tty) = "/dev/tty1" ]] && exec startx > ~/.startx.log 2>&1
       '';
@@ -121,6 +122,9 @@ in {
 
       # json cli
       jq.enable = true;
+
+      # media player
+      mpv.enable = true;
 
       neovim = {
         enable = true;
