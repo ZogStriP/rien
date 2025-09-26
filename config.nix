@@ -36,10 +36,11 @@ in {
 
     # programs that don't need configurations
     home.packages = with pkgs; [
+      bluetui  # ᛒluetooth - https://github.com/pythops/bluetui
       curl     # making request
       dmenu    # suckless' app launcher
       ffmpeg   # screen recording / video stuff
-      slstatus # suckless' status bar
+      impala   # 🛜 wifi - https://github.com/pythops/impala
       st       # suckless' terminal
       wget     # downloading stuff
     ];
