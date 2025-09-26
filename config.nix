@@ -245,6 +245,9 @@ in {
   services.libinput.touchpad.naturalScrolling = true;
 
   services.xserver = {
+    # typing is fast 💨
+    autoRepeatDelay = 150;
+    autoRepeatInterval = 35;
     # enable X window server
     enable = true;
     # use startx to ... start X (no display manager)
