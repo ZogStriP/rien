@@ -1,4 +1,4 @@
-{ d, i, hm, pkgs, lib, hostname, ... } : let
+{ d, p, hm, pkgs, lib, hostname, ... } : let
   username     = "zogstrip";
   name         = "Régis Hanol";
   email        = "regis@hanol.fr";
