@@ -1,12 +1,12 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+
     d.url = "github:nix-community/disko";
     d.inputs.nixpkgs.follows = "nixpkgs";
-    
-    i.url = "github:nix-community/impermanence";
-    
+
+    p.url = "github:nix-community/preservation";
+
     hm.url = "github:nix-community/home-manager";
     hm.inputs.nixpkgs.follows = "nixpkgs";
   };

@@ -9,7 +9,7 @@
 in {
   imports = [
     d.nixosModules.disko
-    i.nixosModules.impermanence
+    p.nixosModules.preservation
     hm.nixosModules.home-manager
   ];
 
@@ -334,10 +334,11 @@ in {
   # ensure /persist is mounted at boot
   fileSystems.${persist}.neededForBoot = true;
 
-  # everything that needs to be persisted
-  environment.persistence.${persist} = {
-    hideMounts = true;
+  # https://nix-community.github.io/preservation
+  preservation.enable = true;
 
+  # everything that needs to be persisted
+  preservation.preserveAt.${persist} = {
     # required system directories
     directories = [
       "/var/lib/bluetooth"
@@ -350,7 +351,7 @@ in {
 
     # required system files
     files = [
-      "/etc/machine-id"
+      { file = "/etc/machine-id"; inInitrd = true; }
     ];
 
     users.${username} = {
