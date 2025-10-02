@@ -331,6 +331,9 @@ in {
   # enable automatic BTRFS scrubbing
   services.btrfs.autoScrub.enable = true;
 
+  # disable this service so it doesn't "fail" because of the preservation's bind mount
+  systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+
   # ensure /persist is mounted at boot
   fileSystems.${persist}.neededForBoot = true;
 
