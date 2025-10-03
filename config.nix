@@ -43,6 +43,7 @@ in {
       impala   # 🛜 wifi - https://github.com/pythops/impala
       st       # suckless' terminal
       wget     # downloading stuff
+      wiremix  # 🔉 sound - https://github.com/tsowell/wiremix
     ];
 
     programs = {
